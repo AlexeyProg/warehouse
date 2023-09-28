@@ -2,7 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "warehousedialog.h"
+#include <QList>
+#include "item.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,9 +19,10 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    WarehouseDialog *wareDial;
+    void show_content();
 
-public slots:
-    void redirect_to_warehouse();
+    QList<Item*>instruments_list;
+    QList<Item*> materials_list;
+
 };
 #endif // MAINWINDOW_H

@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/image-files">
+        <file>img/drel1.jpg</file>
+        <file>img/montaj_pistol.jpg</file>
+        <file>img/perfo.png</file>
+    </qresource>
+</RCC>

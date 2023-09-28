@@ -1,11 +1,12 @@
-#include "mainwindow.h"
+#include "menudialog.h"
 
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+
+    MenuDialog dial;
+    dial.exec();
     return a.exec();
 }
