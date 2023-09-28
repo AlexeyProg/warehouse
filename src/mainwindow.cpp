@@ -9,25 +9,24 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     this->setWindowTitle("Warehouse");
 
-    QString n  = "drel";
+    QString n  = "Drel'";
     QString i = ":/image-files/img/drel1.jpg";
-    Item *test = new Item(n,i,this);
+    QString price1 = "100$";
+    Item *test = new Item(n,i,3,price1,this);
     instruments_list.push_back(test);
 
-    Item *test1 = new Item(n,i,this);
+    QString n2 = "Perforator";
+    QString i2 = ":/image-files/img/perfo.png";
+    QString price2 = "200$";
+    Item *test1 = new Item(n2,i2,5,price2,this);
     instruments_list.push_back(test1);
 
-    Item *test2 = new Item(n,i,this);
+    QString n3 = "Montaj";
+    QString i3 = ":/image-files/img/montaj_pistol.jpg";
+    QString price3 = "300$";
+    Item *test2 = new Item(n3,i3,7,price3,this);
     instruments_list.push_back(test2);
 
-    Item *test3 = new Item(n,i,this);
-    instruments_list.push_back(test3);
-
-    Item *test4 = new Item(n,i,this);
-    instruments_list.push_back(test4);
-
-    Item *test5 = new Item(n,i,this);
-    instruments_list.push_back(test5);
     show_content();
 }
 

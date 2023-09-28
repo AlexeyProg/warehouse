@@ -9,7 +9,8 @@ class Item : public QWidget
 {
     Q_OBJECT
 public:
-    explicit Item(QString &mName, QString &mImage, QWidget *parent = nullptr);
+    explicit Item(QString &mName, QString &mImage, int mQuaintity,QString &mPrice,
+                  QWidget *parent = nullptr);
     void setImage(QString &resource);
 
 
@@ -19,6 +20,8 @@ private:
     void generate_widget();
     QString name;
     QString image;
+    int quantity;
+    QString price;
 
 };
 
