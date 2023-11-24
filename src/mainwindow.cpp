@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    test();
     createUI();
     connect(instruments_but, SIGNAL(clicked()), this, SLOT(changeToInstruments()));
     connect(materials_but, SIGNAL(clicked()), this, SLOT(changeToMaterials()));
@@ -32,30 +33,33 @@ MainWindow::MainWindow(QWidget *parent)
 //    mainlay->addLayout(stack_lay);
 
 
-//    QString n  = "Drel'";
-//    QString i = ":/image-files/img/drel1.jpg";
-//    QString price1 = "100$";
-//    Item *test = new Item(n,i,3,price1,this);
-//    instruments_list.push_back(test);
-
-//    QString n2 = "Perforator";
-//    QString i2 = ":/image-files/img/perfo.png";
-//    QString price2 = "200$";
-//    Item *test1 = new Item(n2,i2,5,price2,this);
-//    instruments_list.push_back(test1);
-
-//    QString n3 = "Montaj";
-//    QString i3 = ":/image-files/img/montaj_pistol.jpg";
-//    QString price3 = "300$";
-//    Item *test2 = new Item(n3,i3,7,price3,this);
-//    instruments_list.push_back(test2);
-
 //    show_content();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::test()
+{
+    QString n  = "Drel'";
+    QString i = ":/image-files/img/drel1.jpg";
+    QString price1 = "100$";
+    Item *test = new Item(n,i,3,price1,this);
+    instruments_list.push_back(test);
+
+    QString n2 = "Perforator";
+    QString i2 = ":/image-files/img/perfo.png";
+    QString price2 = "200$";
+    Item *test1 = new Item(n2,i2,5,price2,this);
+    instruments_list.push_back(test1);
+
+    QString n3 = "Montaj";
+    QString i3 = ":/image-files/img/montaj_pistol.jpg";
+    QString price3 = "300$";
+    Item *test2 = new Item(n3,i3,7,price3,this);
+    instruments_list.push_back(test2);
 }
 
 void MainWindow::changeToInstruments()
@@ -68,18 +72,18 @@ void MainWindow::changeToMaterials()
     stack_widg->setCurrentIndex(1);
 }
 
-void MainWindow::show_content()
+void MainWindow::show_content(QList<Item*> &l, QGridLayout *grid)
 {
     int row = 0;
     int col = 0;
-    for(const auto &it : instruments_list)
+    for(const auto &it : l)
     {
         if(col == 3)
         {
             col = 0;
             row++;
         }
-//        ui->gridLayout->addWidget(it,row,col);
+        grid->addWidget(it,row,col);
         col++;
     }
 }
@@ -94,27 +98,45 @@ void MainWindow::createUI()
     materials_but->setText("Materials");
 
     categoryInstr = new QWidget(this);
-    QLabel *inst_label = new QLabel("Instruments", categoryInstr);
-    inst_label->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
-
     categoryMaterials = new QWidget(this);
-    QLabel *mater_label = new QLabel("Materials", categoryMaterials);
-    mater_label->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
-
     stack_widg->addWidget(categoryInstr);
     stack_widg->addWidget(categoryMaterials);
+
+
     but_lay = new QVBoxLayout();
     but_lay->addWidget(instruments_but);
     but_lay->addWidget(materials_but);
 
+    createInstrumentsPage();
+    createMaterialsPage();
+}
 
-    stack_vhbox_instr = new QVBoxLayout(categoryInstr);
-    stack_vhbox_instr->addWidget(inst_label);
+void MainWindow::createMaterialsPage()
+{
+    QLabel *mater_label = new QLabel(" Materials ", categoryMaterials);
+    mater_label->setFixedHeight(50);
+    mater_label->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
+    mater_label->setStyleSheet("background-color : blue; font: 20pt \"Apple Braille\"; color : white;");
 
     stack_vhbox_mater = new QVBoxLayout(categoryMaterials);
     stack_vhbox_mater->addWidget(mater_label);
 
-//    stack_vhbox->addWidget(inst_label);
-//    QGridLayout *grid_lay = new QGridLayout(categoryInstr);
+    grid_lay_mater = new QGridLayout();
+    show_content(materials_list, grid_lay_mater);
+    stack_vhbox_mater->addLayout(grid_lay_mater);
+}
 
+void MainWindow::createInstrumentsPage()
+{
+    QLabel *inst_label = new QLabel(" Instruments ", categoryInstr);
+    inst_label->setFixedHeight(50);
+    inst_label->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
+    inst_label->setStyleSheet("background-color : blue; font: 20pt \"Apple Braille\"; color : white;");
+
+    stack_vhbox_instr = new QVBoxLayout(categoryInstr);
+    stack_vhbox_instr->addWidget(inst_label);
+
+    grid_lay_instr = new QGridLayout();
+    show_content(instruments_list, grid_lay_instr);
+    stack_vhbox_instr->addLayout(grid_lay_instr);
 }

@@ -1,3 +1,2 @@
-add qstackedwidget to mainwindow for introduce categories 
+add vertical line
 
-correct geometry of stacked buttons(maybe add layout )

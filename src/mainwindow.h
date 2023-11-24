@@ -21,6 +21,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+    void test();
 public slots:
     void changeToInstruments();
     void changeToMaterials();
@@ -31,14 +33,18 @@ private:
     QPushButton *materials_but;
 
     QStackedWidget *stack_widg;
-    void show_content();
+    void show_content(QList<Item *> &l, QGridLayout *grid);
     void createUI();
+    void createMaterialsPage();
+    void createInstrumentsPage();
     QWidget *categoryInstr;
     QWidget *categoryMaterials;
     QHBoxLayout *mainlay;
     QVBoxLayout *but_lay;
     QVBoxLayout *stack_vhbox_instr;
     QVBoxLayout *stack_vhbox_mater;
+    QGridLayout *grid_lay_instr;
+    QGridLayout *grid_lay_mater;
 
     QList<Item*>instruments_list;
     QList<Item*> materials_list;
