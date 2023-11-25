@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "DB/dbimporter.h"
+
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -14,24 +16,14 @@ MainWindow::MainWindow(QWidget *parent)
     connect(materials_but, SIGNAL(clicked()), this, SLOT(changeToMaterials()));
 
 
-
-    /*
-     * i need to create stack vertical layout vecause it will be labels in top of it
-     * and many items like products below it ;
-     */
-
+    DBImporter *import = new DBImporter();
 
     mainlay = new QHBoxLayout(this);
-    mainlay->addLayout(but_lay);
+//    mainlay->addLayout(but_lay);
+    mainlay->addWidget(leftWidg);
     mainlay->addWidget(stack_widg);
 
     centralWidget()->setLayout(mainlay);
-
-
-//    QVBoxLayout *stack_lay = new QVBoxLayout();
-//    stack_lay->addWidget(stack_widg);
-//    mainlay->addLayout(stack_lay);
-
 
 //    show_content();
 }
@@ -93,7 +85,7 @@ void MainWindow::createUI()
     this->setWindowTitle("Warehouse");
     stack_widg = new QStackedWidget(this);
     instruments_but = new QPushButton(this);
-    instruments_but->setText("Instum");
+    instruments_but->setText("Instruments");
     materials_but = new QPushButton(this);
     materials_but->setText("Materials");
 
@@ -103,7 +95,9 @@ void MainWindow::createUI()
     stack_widg->addWidget(categoryMaterials);
 
 
-    but_lay = new QVBoxLayout();
+    leftWidg = new QWidget(this);
+
+    but_lay = new QVBoxLayout(leftWidg);
     but_lay->addWidget(instruments_but);
     but_lay->addWidget(materials_but);
 

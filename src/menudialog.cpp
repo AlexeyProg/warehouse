@@ -9,6 +9,7 @@ MenuDialog::MenuDialog(QWidget *parent) :
     ui->verticalLayout->setAlignment(Qt::AlignCenter);
 
     connect(ui->pushButton_warehouse, SIGNAL(clicked()), this, SLOT(redirect_to_warehouse()));
+    connect(ui->pushButton_quit, SIGNAL(clicked()), this, SLOT(quit()));
 }
 
 MenuDialog::~MenuDialog()
@@ -20,4 +21,9 @@ void MenuDialog::redirect_to_warehouse()
 {
     this->close();
     win.show();
+}
+
+void MenuDialog::quit()
+{
+    qApp->exit();
 }

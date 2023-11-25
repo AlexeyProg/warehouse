@@ -1,2 +1,5 @@
-add vertical line
+create database for products and realised functions to work with them
 
+issues:
+we have images in qt.qrc; and in database
+how to realise that in github this images will load

@@ -22,6 +22,7 @@ private:
     MainWindow win;
 public slots:
     void redirect_to_warehouse();
+    void quit();
 };
 
 #endif // MENUDIALOG_H

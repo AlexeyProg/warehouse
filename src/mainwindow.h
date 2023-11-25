@@ -39,6 +39,8 @@ private:
     void createInstrumentsPage();
     QWidget *categoryInstr;
     QWidget *categoryMaterials;
+    QWidget *leftWidg;
+
     QHBoxLayout *mainlay;
     QVBoxLayout *but_lay;
     QVBoxLayout *stack_vhbox_instr;
